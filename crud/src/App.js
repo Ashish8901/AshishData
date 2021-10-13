@@ -7,7 +7,9 @@ import Homepage from './component/Homepage'
 import Signup from './component/Signup'
 import Userpost from './component/Userpost'
 import Logout from './component/Logout'
-const App = () => {
+import About from './component/About'
+import Privateroute from './Privateroute'
+const App= () => {
 
   
   
@@ -21,7 +23,11 @@ const App = () => {
             <Route path="/Signup" component={Signup} />
             <Route path="/Userpost" component={Userpost}/>
             <Route path="/Logout" component={Logout} />
-
+            <Route path="/about">
+          
+          <Privateroute Cmp={About}/>
+      </Route>
+      
      </Switch>
      
 

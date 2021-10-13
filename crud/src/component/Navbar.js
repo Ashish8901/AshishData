@@ -49,7 +49,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item active">
-              <NavLink className="nav-link" to="/Logout">
+              <NavLink className="nav-link" to="/logout">
                 Logout
               </NavLink>
             </li>

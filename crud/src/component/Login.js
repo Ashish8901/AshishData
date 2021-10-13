@@ -1,14 +1,45 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { NavLink, useHistory } from "react-router-dom";
+
+
+
+
+
+const getLocalItems = () => {
+  const list = localStorage.getItem('email');
+
+  if(list){
+      return JSON.parse(localStorage.getItem('email'))
+  }else{
+      return [];
+  }
+}
+
+const getLocalItemsTwo = () => {
+  const list = localStorage.getItem('password');
+
+  if(list){
+      return JSON.parse(localStorage.getItem('password'))
+  }else{
+      return [];
+  }
+}
+
 
 const Login = () => {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email,setEmail]=useState(getLocalItems())
+  const [password,setPassword]=useState(getLocalItemsTwo())
 
  let history= useHistory();
 
- 
+ useEffect(() => {
+   localStorage.setItem("email",JSON.stringify(email))
+ }, [email])
+
+ useEffect(() => {
+  localStorage.setItem("password",JSON.stringify(password))
+}, [password])
 
 
 
@@ -31,8 +62,9 @@ const Login = () => {
     }else
     {
       window.alert("Login successful");
+      history.push("/Userpost") 
     }
-    history.push("/Userpost") 
+   
    
 }
 

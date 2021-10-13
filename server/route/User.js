@@ -3,6 +3,8 @@ const router = express.Router();
 require("../db/conn");
 const User = require("../model/userSchema");
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken");
+const authenticate =require("../middleware/authenticate")
 
 
 
@@ -37,6 +39,8 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/Login", async (req, res) => {
+
+  let token;
   try {
     const { email, password } = req.body;
 
@@ -46,11 +50,19 @@ router.post("/Login", async (req, res) => {
 
     const userLogin = await User.findOne({ email: email });
 
-  // 
+ 
  
 
     if(userLogin){
       const isMatch = await bcrypt.compare(password,userLogin.password);
+
+      token = await userLogin.generateAuthToken();
+
+      res.cookie("jwtoken",token,{
+                                                expires: new Date(Date.now() + 2589200000),
+                                                httpOnly:true
+                                }
+      );
 
       if (!isMatch) {
         res.status(400).json({ error: "enter correct credentials password" });} 
@@ -68,9 +80,14 @@ router.post("/Login", async (req, res) => {
   }
 });
 
+router.get("/about",authenticate,(req,res)=> {
+  console.log("Hello from the aboutsidde")
+  res.send("hello from the about side");
+} );
+
 router.get("/logout",(req,res)=> {
   console.log("Hello from the logoutsidde")
-  res.status(200).send("User Logout");
+  res.send("User Logout");
 } );
 
 
