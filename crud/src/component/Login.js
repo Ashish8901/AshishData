@@ -61,10 +61,12 @@ const Login = () => {
       window.alert("Please fill the fields")
     }else
     {
-      window.alert("Login successful");
-      history.push("/Userpost") 
+      if(data.token){
+        localStorage.setItem("token", data.token);
+        window.alert('LOGIN SUCCESSFULL')
+        history.push('/Userpost')
     }
-   
+  }
    
 }
 

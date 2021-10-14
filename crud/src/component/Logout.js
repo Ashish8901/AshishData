@@ -1,10 +1,6 @@
 import React from 'react'
-import {
-    useEffect
-} from 'react';
-import {
-    useHistory
-} from 'react-router-dom';
+import {useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 
 const Logout = () => {
 
@@ -19,6 +15,7 @@ const Logout = () => {
             },
             credentials: "include"
         }).then((res) => {
+            localStorage.clear();
             history.push("/login")
 
             if (!res.status === 200) {
@@ -27,16 +24,14 @@ const Logout = () => {
             }
     
         })
-    }).catch((err)=>{
-        console.log(err);
-    });
+    })
 
 
 
 
     return (
         <>
-            <h1> hello from the logout side </h1>
+            
         </>
     )
 }

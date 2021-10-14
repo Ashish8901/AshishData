@@ -1,24 +1,30 @@
-import React 
-from 'react';
-import { useHistory } from 'react-router-dom';
+import React ,{useState,useEffect }from 'react';
+import { useHistory} from 'react-router-dom';
 
 const Privateroute = (props) => {
     const history=useHistory()
+    const [check, setcheck] = useState(0);
+    useEffect(() => {
+        if(!localStorage.getItem('token') && localStorage.getItem('token') !== ''){
+            history.push('/login');
+        }else{
+            setcheck(1);
+        }
+     } )
    
-    
     let Cmp=props.Cmp
+    
 
-    
-        history.push("/login")
-   
-    
     return (
-        <>
-            <Cmp/>
-        </>
+        <div>
+            {check === 1 &&
+                <Cmp/>
+                
+            }
+            
+        </div>
     )
 }
-
 
 
 export default Privateroute

@@ -2,8 +2,8 @@ import React ,{ useState } from "react";
 import { NavLink,useHistory} from "react-router-dom";
 
 
-const Signup = (props) => {
-  console.log("props me kya aay",props)
+const Signup = () => {
+  
   const history = useHistory();
 
   const [user, setUser] = useState({
@@ -74,7 +74,7 @@ const Signup = (props) => {
                       id="form3Example3"
                       className="form-control form-control-lg"
                       name="name"
-                      value={user.name} const email= {props.email}
+                      value={name} 
                       onChange={handleInputs}
                       placeholder="Enter your full name"
                     />
@@ -82,6 +82,32 @@ const Signup = (props) => {
                   </div>
 
                   <div className="form-outline mb-4">
+                    <input
+                      type="email"
+                      id="form3Example3"
+                      className="form-control form-control-lg"
+                      name="email"
+                      value={JSON.parse(localStorage.getItem('email'))}
+                      onChange={handleInputs}
+                      placeholder="Enter a valid email address"
+                    />
+                    <label className="form-label" for="form3Example3"></label>
+                  </div>
+
+                  <div className="form-outline mb-3">
+                    <input
+                      type="password"
+                      id="form3Example4"
+                      className="form-control form-control-lg"
+                      name="password"
+                      value={JSON.parse(localStorage.getItem('password'))}
+                      onChange={handleInputs}
+                      placeholder="Enter password"
+                    />
+                    <label className="form-label" for="form3Example4"></label>
+                  </div>
+
+                   <div className="form-outline mb-4">
                     <input
                       type="number"
                       id="form3Example3"
@@ -92,45 +118,6 @@ const Signup = (props) => {
                       placeholder="Enter a phone number"
                     />
                     <label className="form-label" for="form3Example3"></label>
-                  </div>
-
-
-
-
-
-
-
-                  <div className="form-outline mb-4">
-                    <input
-                      type="email"
-                      id="form3Example3"
-                      className="form-control form-control-lg"
-                      name="email"
-                      value={user.email}
-                      onChange={handleInputs}
-                      placeholder="Enter a valid email address"
-                    />
-                    <label className="form-label" for="form3Example3"></label>
-                  </div>
-
-
-
-
-
-
-
-
-                  <div className="form-outline mb-3">
-                    <input
-                      type="password"
-                      id="form3Example4"
-                      className="form-control form-control-lg"
-                      name="password"
-                      value={user.password}
-                      onChange={handleInputs}
-                      placeholder="Enter password"
-                    />
-                    <label className="form-label" for="form3Example4"></label>
                   </div>
 
                   <div className="d-flex justify-content-between align-items-center">

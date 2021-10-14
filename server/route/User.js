@@ -58,16 +58,12 @@ router.post("/Login", async (req, res) => {
 
       token = await userLogin.generateAuthToken();
 
-      res.cookie("jwtoken",token,{
-                                                expires: new Date(Date.now() + 2589200000),
-                                                httpOnly:true
-                                }
-      );
+      
 
       if (!isMatch) {
         res.status(400).json({ error: "enter correct credentials password" });} 
       else{
-        res.json({ message: "user login successfully" });}
+        res.json({ message: "user login successfully", token});}
     }else{
 
       res.status(400).json({ error: "enter correct credentials" });
@@ -86,7 +82,7 @@ router.get("/about",authenticate,(req,res)=> {
 } );
 
 router.get("/logout",(req,res)=> {
-  console.log("Hello from the logoutsidde")
+
   res.clearCookie("jwtoken",{path:"/"})
   res.status(200).send("User Logout");
 } );
