@@ -24,15 +24,15 @@ const App= () => {
             <Route path="/Userpost" component={Userpost}/>
             <Route path="/Logout" component={Logout} />
             <Route path="/about">
-          
-          <Privateroute Cmp={About}/>
-      </Route>
+                <Privateroute Cmp={About}/>
+            </Route>
       
      </Switch>
      
 
     </>
   )
+  
 }
 
 export default App

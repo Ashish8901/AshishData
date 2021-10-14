@@ -87,7 +87,8 @@ router.get("/about",authenticate,(req,res)=> {
 
 router.get("/logout",(req,res)=> {
   console.log("Hello from the logoutsidde")
-  res.send("User Logout");
+  res.clearCookie("jwtoken",{path:"/"})
+  res.status(200).send("User Logout");
 } );
 
 

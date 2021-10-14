@@ -1,8 +1,10 @@
 import React ,{ useState } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink,useHistory} from "react-router-dom";
 
-const Signup = () => {
-  // const history = useHistory();
+
+const Signup = (props) => {
+  console.log("props me kya aay",props)
+  const history = useHistory();
 
   const [user, setUser] = useState({
     name: "",
@@ -37,11 +39,12 @@ const Signup = () => {
     } else if(res.status===421){
       window.alert(" Fill the Fields");
 
-      // history.push("/login");
+      
     }else{
       window.alert(" Registration SUccessful");
+      history.push("/login");
     }
-   
+    
   };
 
   return (
@@ -71,7 +74,7 @@ const Signup = () => {
                       id="form3Example3"
                       className="form-control form-control-lg"
                       name="name"
-                      value={user.name}
+                      value={user.name} const email= {props.email}
                       onChange={handleInputs}
                       placeholder="Enter your full name"
                     />
@@ -91,6 +94,12 @@ const Signup = () => {
                     <label className="form-label" for="form3Example3"></label>
                   </div>
 
+
+
+
+
+
+
                   <div className="form-outline mb-4">
                     <input
                       type="email"
@@ -103,6 +112,13 @@ const Signup = () => {
                     />
                     <label className="form-label" for="form3Example3"></label>
                   </div>
+
+
+
+
+
+
+
 
                   <div className="form-outline mb-3">
                     <input
@@ -158,5 +174,6 @@ const Signup = () => {
     </>
   );
 };
+
 
 export default Signup;

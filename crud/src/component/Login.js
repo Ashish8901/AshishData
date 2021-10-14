@@ -68,6 +68,13 @@ const Login = () => {
    
 }
 
+  
+
+
+
+
+
+
 return (
   <>
     <section className="vh-100">
@@ -160,14 +167,12 @@ return (
             </div>
           </div>
         </div>
-
-
-
-
-      </div>
+ </div>
     </section>
   </>
 );
                   }
+
+    
 
 export default Login;
