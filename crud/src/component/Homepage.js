@@ -1,9 +1,18 @@
+import { useState } from "react"
 import React from 'react'
+import Login from "./Login";
+import Signup from "./Signup";
 
 const Homepage = () => {
+
+  const [tab,setTab]=useState(0);
     return (
         <>
-        {/* <h3>Welcome to the CRUD operation website</h3> */}
+          <button onClick={ ()=>{setTab(0)}}>Login</button>
+            <button onClick={ ()=>{setTab(1)}}>Register</button>
+
+            {tab == 1 ? <Signup/> : <Login/>}
+
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">

@@ -63,6 +63,7 @@ const Login = () => {
     {
       if(data.token){
         localStorage.setItem("token", data.token);
+        localStorage.setItem("token", JSON.stringify(data.userLogin));
         window.alert('LOGIN SUCCESSFULL')
         history.push('/Userpost')
     }

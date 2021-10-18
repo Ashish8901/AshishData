@@ -1,9 +1,9 @@
-import React ,{ useState } from "react";
-import { NavLink,useHistory} from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 
 
 const Signup = () => {
-  
+
   const history = useHistory();
 
   const [user, setUser] = useState({
@@ -36,15 +36,15 @@ const Signup = () => {
 
     if (res.status === 422 || !data) {
       window.alert("Email Already Exists");
-    } else if(res.status===421){
+    } else if (res.status === 421) {
       window.alert(" Fill the Fields");
 
-      
-    }else{
-      window.alert(" Registration SUccessful");
+
+    } else {
+      window.alert(" Registration Successful");
       history.push("/login");
     }
-    
+
   };
 
   return (
@@ -74,7 +74,7 @@ const Signup = () => {
                       id="form3Example3"
                       className="form-control form-control-lg"
                       name="name"
-                      value={name} 
+                      value={name}
                       onChange={handleInputs}
                       placeholder="Enter your full name"
                     />
@@ -87,7 +87,7 @@ const Signup = () => {
                       id="form3Example3"
                       className="form-control form-control-lg"
                       name="email"
-                      value={JSON.parse(localStorage.getItem('email'))}
+                      value={user.email || JSON.parse(localStorage.getItem('email'))}
                       onChange={handleInputs}
                       placeholder="Enter a valid email address"
                     />
@@ -107,7 +107,7 @@ const Signup = () => {
                     <label className="form-label" for="form3Example4"></label>
                   </div>
 
-                   <div className="form-outline mb-4">
+                  <div className="form-outline mb-4">
                     <input
                       type="number"
                       id="form3Example3"

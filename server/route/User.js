@@ -63,7 +63,7 @@ router.post("/Login", async (req, res) => {
       if (!isMatch) {
         res.status(400).json({ error: "enter correct credentials password" });} 
       else{
-        res.json({ message: "user login successfully", token});}
+        res.json({ message: "user login successfully", token, userLogin});}
     }else{
 
       res.status(400).json({ error: "enter correct credentials" });
