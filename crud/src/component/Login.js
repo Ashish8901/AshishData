@@ -1,7 +1,6 @@
 import React, { useState ,useEffect} from "react";
 import { NavLink, useHistory } from "react-router-dom";
-
-
+import Homepage from "./Homepage";
 
 
 
@@ -26,21 +25,23 @@ const getLocalItemsTwo = () => {
 }
 
 
-const Login = () => {
+const Login = (props) => {
 
   const [email,setEmail]=useState(getLocalItems())
   const [password,setPassword]=useState(getLocalItemsTwo())
 
+
+  const update = (e) => {
+    console.log(e.target.value);
+    props.onUpdate(e.target.value);
+    setEmail(e.target.value);
+  };
+
+  useEffect(() => {
+    setEmail(props.passedval)
+  }, [props.passedval])
+
  let history= useHistory();
-
- useEffect(() => {
-   localStorage.setItem("email",JSON.stringify(email))
- }, [email])
-
- useEffect(() => {
-  localStorage.setItem("password",JSON.stringify(password))
-}, [password])
-
 
 
   const loginUser = async (e) => {
@@ -71,15 +72,11 @@ const Login = () => {
    
 }
 
-  
-
-
-
-
 
 
 return (
   <>
+
     <section className="vh-100">
       <div>
         <div className="container-fluid h-custom">
@@ -107,6 +104,7 @@ return (
                         <i className="fab fa-linkedin-in"></i>
                       </button>
                     </div> */}
+                    
 
                 <div className="divider d-flex align-items-center my-4">
                   <p className="text-center fw-bold mx-3 mb-0">
@@ -114,24 +112,40 @@ return (
                   </p>
                 </div>
 
+
+
+
                 <div className="form-outline mb-4">
                   <input
                     type="email"
                     id="form3Example3"
                     className="form-control form-control-lg"
-                    name="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                    name="email" value={email} 
+                    // onChange={(e) => setEmail(e.target.value)  }
+                    onChange={update}
+       
 
                     placeholder="Enter a valid email address"
                   />
                   <label className="form-label" htmlFor="form3Example3"></label>
                 </div>
 
+
+
+
+
+
+
+
+
                 <div className="form-outline mb-3">
                   <input
                     type="password"
                     id="form3Example4"
                     className="form-control form-control-lg"
-                    name="password" value={password} onChange={(e) => setPassword(e.target.value)}
+                    name="password" value={password} 
+                    onChange={(e) => setPassword(e.target.value)}
+                    
                     placeholder="Enter password"
                   />
                   <label className="form-label" htmlFor="form3Example4"></label>

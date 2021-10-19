@@ -5,28 +5,41 @@ import Signup from "./Signup";
 
 const Homepage = () => {
 
-  const [tab,setTab]=useState(0);
-    return (
-        <>
-          <button onClick={ ()=>{setTab(0)}}>Login</button>
-            <button onClick={ ()=>{setTab(1)}}>Register</button>
+                  const [tab, setTab] = useState(0);
+                  const [email,setEmail]= useState("");
 
-            {tab == 1 ? <Signup/> : <Login/>}
+                  const onUpdate = (val) => {
+                   setEmail(val)
+                  }
+                  
+  return (
+    <>
+      <button onClick={() => { setTab(0) }}>Login</button>
+      <button onClick={() => { setTab(1) }}>Register</button>
 
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-    <div class="carousel-caption d-none d-md-block">
-        <h5>Welcome User</h5>
-        <p>Welcome to the CRUD operation website.</p>
-      </div>
-      <img src="https://picsum.photos/1440/522" class="d-block w-100" alt=".." />
-    </div>
-    
-  </div>
-</div>
-                    </>
-    )
+      {tab == 1 ? <Signup passedval={email} onUpdate={onUpdate}/> : <Login onUpdate={onUpdate} passedval={email}/>
+
+     
+      }
+
+
+      
+
+
+      {/* <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Welcome User</h5>
+              <p>Welcome to the CRUD operation website.</p>
+            </div>
+            <img src="https://picsum.photos/1440/522" class="d-block w-100" alt=".." />
+          </div>
+
+        </div>
+      </div> */}
+    </>
+  )
 }
 
 export default Homepage;

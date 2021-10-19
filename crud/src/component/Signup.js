@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { NavLink, useHistory } from "react-router-dom";
 
 
-const Signup = () => {
+
+const Signup = (props) => {
 
   const history = useHistory();
 
@@ -13,13 +14,27 @@ const Signup = () => {
     password: ""
   });
   let name, value;
+
+  
+
   const handleInputs = (e) => {
     console.log(e);
     name = e.target.name;
     value = e.target.value;
 
     setUser({ ...user, [name]: value });
+    if(name == "email"){
+      props.onUpdate(e.target.value);
+    }
   };
+
+
+  useEffect(() => {
+    setUser({ ...user, email: props.passedval });
+  }, [props.passedval])
+
+
+  
 
   const PostData = async (e) => {
     e.preventDefault();
@@ -49,6 +64,12 @@ const Signup = () => {
 
   return (
     <>
+
+
+
+
+
+
       <section className="vh-100">
         <div>
           <div className="container-fluid h-custom">
@@ -74,12 +95,18 @@ const Signup = () => {
                       id="form3Example3"
                       className="form-control form-control-lg"
                       name="name"
-                      value={name}
+                      value={user.name}
                       onChange={handleInputs}
                       placeholder="Enter your full name"
                     />
                     <label className="form-label" for="form3Example3"></label>
                   </div>
+
+
+
+
+
+
 
                   <div className="form-outline mb-4">
                     <input
@@ -87,12 +114,20 @@ const Signup = () => {
                       id="form3Example3"
                       className="form-control form-control-lg"
                       name="email"
-                      value={user.email || JSON.parse(localStorage.getItem('email'))}
+                      value={user.email}
                       onChange={handleInputs}
                       placeholder="Enter a valid email address"
                     />
                     <label className="form-label" for="form3Example3"></label>
                   </div>
+
+
+
+
+
+
+
+
 
                   <div className="form-outline mb-3">
                     <input
@@ -100,7 +135,7 @@ const Signup = () => {
                       id="form3Example4"
                       className="form-control form-control-lg"
                       name="password"
-                      value={JSON.parse(localStorage.getItem('password'))}
+                      value={user.password}
                       onChange={handleInputs}
                       placeholder="Enter password"
                     />
